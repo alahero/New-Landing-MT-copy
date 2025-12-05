@@ -157,16 +157,16 @@
     /* Base sticky header styles - Desktop and Mobile */
     .headroom--pinned,
     .headroom--pinned.headroom--not-top {
-      background-color: #0f0f0f !important;
-      background: #0f0f0f !important;
+      background-color: #1a1a1a !important;
+      background: #1a1a1a !important;
       transition: background-color 0.3s ease !important;
     }
 
     /* Navbar container - full width with black background */
     .headroom--pinned #vue-navbar,
     .headroom--pinned .navbar {
-      background-color: #0f0f0f !important;
-      background: #0f0f0f !important;
+      background-color: #1a1a1a !important;
+      background: #1a1a1a !important;
       transition: background-color 0.3s ease !important;
     }
 
@@ -185,8 +185,8 @@
 
     /* Container fluid - maintains proper padding while having black background */
     .headroom--pinned .navbar .container-fluid {
-      background-color: #0f0f0f !important;
-      background: #0f0f0f !important;
+      background-color: #1a1a1a !important;
+      background: #1a1a1a !important;
       width: 100% !important;
       max-width: 100% !important;
       /* Maintain original padding for content spacing */
@@ -399,7 +399,7 @@
       --wp--preset--aspect-ratio--2-3: 2/3;
       --wp--preset--aspect-ratio--16-9: 16/9;
       --wp--preset--aspect-ratio--9-16: 9/16;
-      --wp--preset--color--black: #0f0f0f;
+      --wp--preset--color--black: #1a1a1a;
       --wp--preset--color--cyan-bluish-gray: #abb8c3;
       --wp--preset--color--white: #ffffff;
       --wp--preset--color--pale-pink: #f78da7;
@@ -1134,15 +1134,15 @@
     /* Fondo general negro - SOLO html y body */
     html,
     body {
-      background-color: #0f0f0f !important;
-      background: #0f0f0f !important;
+      background-color: #1a1a1a !important;
+      background: #1a1a1a !important;
     }
 
     /* Asegurar que los contenedores principales no tengan fondo blanco/gris */
     #page-body,
     .site-content,
     main {
-      background-color: #0f0f0f !important;
+      background-color: #1a1a1a !important;
     }
 
     /* IMPORTANTE: Las secciones mantienen sus fondos originales */
@@ -1182,8 +1182,8 @@
 
     /* Footer Styles - Responsive */
     .site-footer {
-      background-color: #0f0f0f !important;
-      background: #0f0f0f !important;
+      background-color: #1a1a1a !important;
+      background: #1a1a1a !important;
       color: #ffffff;
       padding: 40px 0 20px 0;
       width: 100%;
@@ -3093,6 +3093,14 @@
                   <button class="category-btn">MADNESS TOUR</button>
                 </div>
 
+                <div id="buttons-residents" class="category-buttons-container" style="display: none;">
+                  <button class="category-btn active">RESIDENTS</button>
+                </div>
+
+                <div id="buttons-special-offers" class="category-buttons-container" style="display: none;">
+                  <button class="category-btn active">BACHELORETTE</button>
+                </div>
+
                 <script>
                   document.addEventListener('DOMContentLoaded', function () {
                     const categoryBtns = document.querySelectorAll('.category-btn');
@@ -3114,6 +3122,10 @@
                           targetContentId = 'modal-table-service-content';
                         } else if (container.id === 'buttons-personal') {
                           targetContentId = 'modal-personal-content';
+                        } else if (container.id === 'buttons-residents') {
+                          targetContentId = 'modal-residents-content';
+                        } else if (container.id === 'buttons-special-offers') {
+                          targetContentId = 'modal-special-offers-content';
                         }
 
                         // 3. Filter Content (Scoped to target area)
@@ -3689,7 +3701,7 @@
                 <!-- Tab Content: Residents -->
                 <div id="modal-residents-content" class="modal-tab-content" style="display: none;">
                   <div class="residents-grid">
-                    <div
+                    <div class="category-content" data-category="RESIDENTS"
                       style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(85, 191, 238, 0.3); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column;">
                       <div style="flex: 1;">
                         <h5
@@ -3752,7 +3764,7 @@
                 <!-- Tab Content: Special Offers -->
                 <div id="modal-special-offers-content" class="modal-tab-content" style="display: none;">
                   <div class="special-offers-grid">
-                    <div
+                    <div class="category-content" data-category="BACHELORETTE"
                       style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(85, 191, 238, 0.3); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column;">
                       <div style="flex: 1;">
                         <h5
@@ -3876,16 +3888,25 @@
                     }
 
                     // Toggle Button Categories
+                    // Toggle Button Categories
                     const buttonsTable = document.getElementById('buttons-table-service');
                     const buttonsPersonal = document.getElementById('buttons-personal');
+                    const buttonsResidents = document.getElementById('buttons-residents');
+                    const buttonsSpecial = document.getElementById('buttons-special-offers');
 
                     if (buttonsTable) buttonsTable.style.display = 'none';
                     if (buttonsPersonal) buttonsPersonal.style.display = 'none';
+                    if (buttonsResidents) buttonsResidents.style.display = 'none';
+                    if (buttonsSpecial) buttonsSpecial.style.display = 'none';
 
                     if (tabName === 'modal-table-service' && buttonsTable) {
                       buttonsTable.style.display = 'flex';
                     } else if (tabName === 'modal-personal' && buttonsPersonal) {
                       buttonsPersonal.style.display = 'flex';
+                    } else if (tabName === 'modal-residents' && buttonsResidents) {
+                      buttonsResidents.style.display = 'flex';
+                    } else if (tabName === 'modal-special-offers' && buttonsSpecial) {
+                      buttonsSpecial.style.display = 'flex';
                     }
                   });
                 });
