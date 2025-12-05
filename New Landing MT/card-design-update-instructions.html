@@ -1,0 +1,145 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Card Design Update Script&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Instructions to Update Card Design&lt;/h1&gt;
+&lt;p&gt;Add this script at the end of your HTML file, just before the closing
+&lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; tag:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+&lt;script&gt;
+// Update all table service cards to use new design
+document.addEventListener('DOMContentLoaded', function() {
+// Find all cards in the Table Service tab
+const tableServiceContent = document.getElementById('modal-table-service-content');
+if (tableServiceContent) {
+const cards = tableServiceContent.querySelectorAll('div[style*="background: rgba(255, 255, 255, 0.05)"]');
+
+cards.forEach(card =&gt; {
+// Add the new card design class
+card.classList.add('card-new-design');
+
+// Remove inline styles that conflict with the new design
+card.removeAttribute('style');
+
+// Update labels to remove inline styles
+const labels = card.querySelectorAll('label');
+labels.forEach(label =&gt; {
+label.removeAttribute('style');
+});
+
+// Update selects to remove inline styles
+const selects = card.querySelectorAll('select');
+selects.forEach(select =&gt; {
+select.removeAttribute('style');
+});
+
+// Update price paragraph
+const pricePara = card.querySelector('p[style*="font-size: 1.3rem"]');
+if (pricePara) {
+pricePara.classList.add('price');
+pricePara.removeAttribute('style');
+}
+
+// Update "What's included?" link
+const whatsIncluded = card.querySelector('.btn_ver_mas_tab');
+if (whatsIncluded) {
+whatsIncluded.classList.add('whats-included');
+whatsIncluded.removeAttribute('style');
+}
+
+// Update button
+const button = card.querySelector('.btn_prd_tab');
+if (button) {
+button.classList.add('btn-get-tickets');
+button.removeAttribute('style');
+}
+
+// Update h5
+const h5 = card.querySelector('h5');
+if (h5) {
+h5.removeAttribute('style');
+}
+});
+}
+});
+&lt;/script&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Alternative: Direct CSS Override&lt;/h2&gt;
+&lt;p&gt;Or add these additional CSS rules to override the inline styles:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+#modal-table-service-content &gt; div &gt; div[style] {
+background-color: #1a1a1a !important;
+border: 1px solid #55BFEE !important;
+border-radius: 15px !important;
+padding: 20px !important;
+}
+
+#modal-table-service-content h5[style] {
+color: #fff !important;
+font-size: 1.5rem !important;
+margin-bottom: 5px !important;
+letter-spacing: 1px !important;
+text-transform: uppercase !important;
+font-weight: 700 !important;
+font-family: 'Bebas Neue', sans-serif !important;
+}
+
+#modal-table-service-content p[style*="font-size: 1.3rem"][style*="font-weight: 700"] {
+font-size: 2rem !important;
+font-weight: bold !important;
+margin-bottom: 5px !important;
+color: #fff !important;
+}
+
+#modal-table-service-content .btn_ver_mas_tab {
+color: #55BFEE !important;
+text-decoration: underline !important;
+font-size: 0.9rem !important;
+cursor: pointer !important;
+margin-bottom: 20px !important;
+display: inline-block !important;
+}
+
+#modal-table-service-content label[style] {
+font-size: 0.9rem !important;
+color: #ccc !important;
+margin-bottom: 5px !important;
+display: block !important;
+font-family: sans-serif !important;
+}
+
+#modal-table-service-content select[style] {
+width: 100% !important;
+padding: 12px !important;
+background-color: #333 !important;
+border: 1px solid #444 !important;
+border-radius: 8px !important;
+color: #fff !important;
+margin-bottom: 15px !important;
+}
+
+#modal-table-service-content .btn_prd_tab {
+width: 100% !important;
+padding: 15px !important;
+background: linear-gradient(90deg, #020297 0%, #2857be 50%, #55bfee 100%) !important;
+border: none !important;
+border-radius: 8px !important;
+color: #fff !important;
+font-size: 1.2rem !important;
+font-weight: bold !important;
+text-transform: uppercase !important;
+cursor: pointer !important;
+margin-top: 10px !important;
+box-shadow: 0 4px 10px rgba(30, 144, 255, 0.4) !important;
+font-family: 'Bebas Neue', sans-serif !important;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
